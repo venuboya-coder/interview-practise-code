@@ -661,5 +661,249 @@
 //
 //        System.out.println(count);
 
+//61–80: Intermediate interview-level problems
+//
+//61. Find first duplicate in array
+//import java.util.*;
+//
+//int[] arr = {1, 2, 3, 4, 2, 5};
+//Set<Integer> seen = new HashSet<>();
+//
+//for (int n : arr) {
+//        if (!seen.add(n)) {
+//        System.out.println(n);
+//        break;
+//                }
+//                }
+
+//62. Move all zeros to end of array
+//int[] arr = {1, 0, 2, 0, 3, 4};
+//int index = 0;
+//
+//for (int n : arr) {
+//        if (n != 0) {
+//arr[index++] = n;
+//    }
+//            }
+//
+//            while (index < arr.length) {
+//arr[index++] = 0;
+//        }
+//
+//        for (int n : arr) {
+//        System.out.print(n + " ");
+//}
+
+//63. Find missing number in 1 to n
+//int[] arr = {1, 2, 4, 5};
+//int n = 5;
+//int expected = n * (n + 1) / 2;
+//int actual = 0;
+//
+//for (int num : arr) {
+//actual += num;
+//}
+//
+//        System.out.println(expected - actual);
+
+//64. Check if two arrays are equal
+//import java.util.*;
+//
+//int[] a = {1, 2, 3};
+//int[] b = {1, 2, 3};
+//
+//System.out.println(Arrays.equals(a, b));
+
+//65. Find all repeated words
+//import java.util.*;
+//
+//String input = "api ui api db api ui";
+//String[] words = input.split(" ");
+//Map<String, Integer> map = new HashMap<>();
+//
+//for (String word : words) {
+//        map.put(word, map.getOrDefault(word, 0) + 1);
+//        }
+//
+//        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+//        if (entry.getValue() > 1) {
+//        System.out.println(entry.getKey());
+//        }
+//        }
+
+//66. Validate password has digit and uppercase
+//String password = "Test123";
+//boolean hasDigit = false;
+//boolean hasUpper = false;
+//
+//for (char c : password.toCharArray()) {
+//        if (Character.isDigit(c)) hasDigit = true;
+//        if (Character.isUpperCase(c)) hasUpper = true;
+//        }
+//
+//        System.out.println(hasDigit && hasUpper);
+
+//67. Find longest substring without spaces
+//String input = "playwright selenium api";
+//String[] parts = input.split(" ");
+//String longest = "";
+//
+//for (String part : parts) {
+//        if (part.length() > longest.length()) {
+//longest = part;
+//    }
+//            }
+//
+//            System.out.println(longest);
+
+//68. Group same characters together count-wise
+//import java.util.*;
+//
+//String input = "aaabbc";
+//Map<Character, Integer> map = new LinkedHashMap<>();
+//
+//for (char c : input.toCharArray()) {
+//        map.put(c, map.getOrDefault(c, 0) + 1);
+//        }
+//
+//        System.out.println(map);
+
+//69. Compress string like a3b2c1
+//String input = "aaabbc";
+//StringBuilder result = new StringBuilder();
+//int count = 1;
+//
+//for (int i = 0; i < input.length(); i++) {
+//        if (i < input.length() - 1 && input.charAt(i) == input.charAt(i + 1)) {
+//count++;
+//        } else {
+//        result.append(input.charAt(i)).append(count);
+//count = 1;
+//        }
+//        }
+//
+//        System.out.println(result);
+
+//70. Validate response contains no null fields
+//import java.util.*;
+//
+//Map<String, String> response = new HashMap<>();
+//response.put("id", "101");
+//response.put("name", null);
+//
+//boolean valid = true;
+//for (String key : response.keySet()) {
+//        if (response.get(key) == null) {
+//valid = false;
+//        System.out.println("Null field: " + key);
+//    }
+//            }
+//
+//            System.out.println(valid);
+
+//71. Find intersection of two lists
+//import java.util.*;
+//
+//List<Integer> a = Arrays.asList(1, 2, 3, 4);
+//List<Integer> b = Arrays.asList(3, 4, 5);
+//
+//List<Integer> result = new ArrayList<>(a);
+//result.retainAll(b);
+//
+//System.out.println(result);
+
+//72. Find difference of two lists
+//import java.util.*;
+//
+//List<Integer> a = Arrays.asList(1, 2, 3, 4);
+//List<Integer> b = Arrays.asList(3, 4);
+//
+//List<Integer> result = new ArrayList<>(a);
+//result.removeAll(b);
+//
+//System.out.println(result);
+
+//73. Validate if date string matches yyyy-MM-dd
+//String date = "2026-03-30";
+//boolean valid = date.matches("\\d{4}-\\d{2}-\\d{2}");
+//
+//System.out.println(valid);
+
+//74. Parse CSV and print columns
+//String csv = "id,name,status";
+//String[] columns = csv.split(",");
+//
+//for (String col : columns) {
+//        System.out.println(col);
+//}
+
+//75. Count API calls per endpoint
+//import java.util.*;
+//
+//String[] endpoints = {"/cart", "/cart", "/login", "/cart", "/login"};
+//Map<String, Integer> map = new HashMap<>();
+//
+//for (String ep : endpoints) {
+//        map.put(ep, map.getOrDefault(ep, 0) + 1);
+//        }
+//
+//        System.out.println(map);
+
+//76. Validate all quantities are greater than zero
+//int[] quantities = {2, 1, 5, 0};
+//boolean valid = true;
+//
+//for (int q : quantities) {
+//        if (q <= 0) {
+//valid = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(valid);
+
+//77. Filter only failed tests from list
+//import java.util.*;
+//
+//List<String> results = Arrays.asList("PASS", "FAIL", "SKIP", "FAIL");
+//
+//for (String r : results) {
+//        if (r.equals("FAIL")) {
+//        System.out.println(r);
+//    }
+//            }
+
+//78. Count character types: letters, digits, special chars
+//String input = "Test@123";
+//        int letters = 0, digits = 0, special = 0;
+//
+//for (char c : input.toCharArray()) {
+//        if (Character.isLetter(c)) letters++;
+//        else if (Character.isDigit(c)) digits++;
+//        else special++;
+//        }
+//
+//        System.out.println("Letters=" + letters + ", Digits=" + digits + ", Special=" + special);
+
+//79. Reverse each word in a sentence
+//String input = "java api";
+//String[] words = input.split(" ");
+//
+//for (String word : words) {
+//String rev = "";
+//    for (int i = word.length() - 1; i >= 0; i--) {
+//rev += word.charAt(i);
+//    }
+//            System.out.print(rev + " ");
+//}
+
+//80. Validate a list has unique values only
+//import java.util.*;
+//
+//List<String> values = Arrays.asList("A", "B", "C", "A");
+//Set<String> set = new HashSet<>(values);
+//
+//System.out.println(values.size() == set.size());
+
 
 //}
