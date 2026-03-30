@@ -315,6 +315,325 @@
 //    }
 //            }
 
+//121–140: Harder QA-style data and validation problems
+//
+//121. Validate all response codes are in allowed set
+//import java.util.*;
+//
+//int[] codes = {200, 201, 204, 200};
+//Set<Integer> allowed = Set.of(200, 201, 204);
+//boolean valid = true;
+//
+//for (int code : codes) {
+//        if (!allowed.contains(code)) {
+//valid = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(valid);
+
+//122. Find duplicate emails ignoring case
+//import java.util.*;
+//
+//String[] emails = {"A@test.com", "b@test.com", "a@test.com"};
+//Set<String> seen = new HashSet<>();
+//Set<String> duplicates = new HashSet<>();
+//
+//for (String email : emails) {
+//String lower = email.toLowerCase();
+//    if (!seen.add(lower)) {
+//        duplicates.add(lower);
+//    }
+//            }
+//
+//            System.out.println(duplicates);
+
+//123. Validate all mandatory API fields are non-null and non-blank
+//import java.util.*;
+//
+//Map<String, String> response = new HashMap<>();
+//response.put("id", "101");
+//response.put("name", " ");
+//response.put("status", "active");
+//
+//String[] required = {"id", "name", "status"};
+//boolean valid = true;
+//
+//for (String field : required) {
+//String value = response.get(field);
+//    if (value == null || value.trim().isEmpty()) {
+//valid = false;
+//        System.out.println("Invalid field: " + field);
+//    }
+//            }
+//
+//            System.out.println(valid);
+
+//124. Compare expected list with actual list regardless of order
+//import java.util.*;
+//
+//List<String> expected = Arrays.asList("A", "B", "C");
+//List<String> actual = Arrays.asList("C", "A", "B");
+//
+//List<String> e = new ArrayList<>(expected);
+//List<String> a = new ArrayList<>(actual);
+//Collections.sort(e);
+//Collections.sort(a);
+//
+//System.out.println(e.equals(a));
+
+//125. Find records missing from actual list
+//import java.util.*;
+//
+//List<String> expected = Arrays.asList("TC1", "TC2", "TC3");
+//List<String> actual = Arrays.asList("TC1", "TC3");
+//
+//for (String tc : expected) {
+//        if (!actual.contains(tc)) {
+//        System.out.println("Missing: " + tc);
+//    }
+//            }
+
+//126. Validate all response times under threshold and print offenders
+//int[] times = {120, 450, 330, 90};
+//int threshold = 300;
+//boolean pass = true;
+//
+//for (int time : times) {
+//        if (time > threshold) {
+//pass = false;
+//        System.out.println("Exceeded: " + time);
+//    }
+//            }
+//
+//            System.out.println(pass);
+
+//127. Group API calls by status code
+//import java.util.*;
+//
+//int[] statusCodes = {200, 500, 200, 404, 500, 200};
+//Map<Integer, Integer> map = new HashMap<>();
+//
+//for (int code : statusCodes) {
+//        map.put(code, map.getOrDefault(code, 0) + 1);
+//        }
+//
+//        System.out.println(map);
+
+//128. Find average response time per endpoint
+//import java.util.*;
+//
+//class Call {
+//    String endpoint;
+//    int time;
+//    Call(String endpoint, int time) {
+//        this.endpoint = endpoint;
+//        this.time = time;
+//    }
+//}
+//
+//List<Call> calls = Arrays.asList(
+//        new Call("/cart", 100),
+//        new Call("/cart", 200),
+//        new Call("/login", 150)
+//);
+//
+//Map<String, Integer> sum = new HashMap<>();
+//Map<String, Integer> count = new HashMap<>();
+//
+//for (Call call : calls) {
+//        sum.put(call.endpoint, sum.getOrDefault(call.endpoint, 0) + call.time);
+//        count.put(call.endpoint, count.getOrDefault(call.endpoint, 0) + 1);
+//        }
+//
+//        for (String ep : sum.keySet()) {
+//        System.out.println(ep + " avg = " + (sum.get(ep) / count.get(ep)));
+//        }
+
+//129. Find endpoint with highest average response time
+//import java.util.*;
+//
+//class Call {
+//    String endpoint;
+//    int time;
+//    Call(String endpoint, int time) {
+//        this.endpoint = endpoint;
+//        this.time = time;
+//    }
+//}
+//
+//List<Call> calls = Arrays.asList(
+//        new Call("/cart", 100),
+//        new Call("/cart", 300),
+//        new Call("/login", 500),
+//        new Call("/login", 700)
+//);
+//
+//Map<String, Integer> sum = new HashMap<>();
+//Map<String, Integer> count = new HashMap<>();
+//
+//for (Call c : calls) {
+//        sum.put(c.endpoint, sum.getOrDefault(c.endpoint, 0) + c.time);
+//        count.put(c.endpoint, count.getOrDefault(c.endpoint, 0) + 1);
+//        }
+//
+//String maxEndpoint = null;
+//double maxAvg = 0;
+//
+//for (String ep : sum.keySet()) {
+//double avg = (double) sum.get(ep) / count.get(ep);
+//    if (avg > maxAvg) {
+//maxAvg = avg;
+//maxEndpoint = ep;
+//    }
+//            }
+//
+//            System.out.println(maxEndpoint);
+
+
+//130. Validate numeric strings before parsing
+//String[] values = {"10", "20", "abc", "40"};
+//
+//for (String val : values) {
+//        if (val.matches("\\d+")) {
+//        System.out.println(Integer.parseInt(val));
+//        } else {
+//        System.out.println("Invalid number: " + val);
+//    }
+//            }
+
+//131. Compare two JSON-like strings ignoring spaces
+//String expected = "{ \"id\":101, \"name\":\"John\" }";
+//String actual = "{\"id\":101,\"name\":\"John\"}";
+//
+//System.out.println(expected.replaceAll("\\s+", "").equals(actual.replaceAll("\\s+", "")));
+
+//132. Find duplicate test case names across suites
+//import java.util.*;
+//
+//List<String> suite1 = Arrays.asList("login", "cart", "checkout");
+//List<String> suite2 = Arrays.asList("cart", "payment", "login");
+//
+//Set<String> set = new HashSet<>(suite1);
+//for (String test : suite2) {
+//        if (set.contains(test)) {
+//        System.out.println(test);
+//    }
+//            }
+
+//133. Validate ordered API workflow
+//import java.util.*;
+//
+//List<String> actual = Arrays.asList("login", "cart", "checkout");
+//List<String> expected = Arrays.asList("login", "cart", "checkout");
+//
+//System.out.println(actual.equals(expected));
+
+//134. Find broken sequence in ordered workflow
+//import java.util.*;
+//
+//List<String> actual = Arrays.asList("login", "checkout", "cart");
+//List<String> expected = Arrays.asList("login", "cart", "checkout");
+//
+//for (int i = 0; i < expected.size(); i++) {
+//        if (!expected.get(i).equals(actual.get(i))) {
+//        System.out.println("Mismatch at position " + i);
+//        break;
+//                }
+//                }
+
+//135. Validate item quantities sum to expected total count
+//int[] quantities = {2, 3, 1};
+//int expectedCount = 6;
+//int sum = 0;
+//
+//for (int q : quantities) sum += q;
+//
+//System.out.println(sum == expectedCount);
+
+//136. Count how many payloads are invalid
+//class Payload {
+//    String id;
+//    int quantity;
+//
+//    Payload(String id, int quantity) {
+//        this.id = id;
+//        this.quantity = quantity;
+//    }
+//}
+//
+//Payload[] payloads = {
+//        new Payload("1", 2),
+//        new Payload(null, 3),
+//        new Payload("3", 0)
+//};
+//
+//int invalid = 0;
+//
+//for (Payload p : payloads) {
+//        if (p.id == null || p.quantity <= 0) {
+//invalid++;
+//        }
+//        }
+//
+//        System.out.println(invalid);
+
+//137. Find max consecutive passing tests
+//String[] results = {"PASS", "PASS", "FAIL", "PASS", "PASS", "PASS"};
+//        int max = 0, current = 0;
+//
+//for (String r : results) {
+//        if (r.equals("PASS")) {
+//current++;
+//max = Math.max(max, current);
+//    } else {
+//current = 0;
+//        }
+//        }
+//
+//        System.out.println(max);
+
+//138. Find max consecutive failures
+//String[] results = {"FAIL", "FAIL", "PASS", "FAIL", "FAIL", "FAIL"};
+//        int max = 0, current = 0;
+//
+//for (String r : results) {
+//        if (r.equals("FAIL")) {
+//current++;
+//max = Math.max(max, current);
+//    } else {
+//current = 0;
+//        }
+//        }
+//
+//        System.out.println(max);
+
+//139. Validate date list is ascending.
+//        String[] dates = {"2026-01-01", "2026-01-05", "2026-01-10"};
+//boolean ascending = true;
+//
+//for (int i = 0; i < dates.length - 1; i++) {
+//        if (dates[i].compareTo(dates[i + 1]) > 0) {
+//ascending = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(ascending);
+
+//140. Build simple field mismatch report
+//import java.util.*;
+//
+//Map<String, String> expected = Map.of("id", "101", "status", "active", "name", "John");
+//Map<String, String> actual = Map.of("id", "101", "status", "inactive", "name", "Johnny");
+//
+//for (String key : expected.keySet()) {
+//        if (!expected.get(key).equals(actual.get(key))) {
+//        System.out.println(key + " expected=" + expected.get(key) + ", actual=" + actual.get(key));
+//        }
+//        }
+
 
 
 //}
