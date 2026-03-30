@@ -1209,4 +1209,62 @@
 //double total = (payableMouseQty * mousePrice) + (keyboardQty * keyboardPrice);
 //
 //System.out.println(String.format("%.2f", total)); // 65.98
+//******************************************************************************
+//***********************IMPORTANT INSTRUCTIONS*******************************************************
+//******************************************************************************
+//******************************************************************************
+//How to use this properly
+//
+//Don’t try to master all 100 in one day.
+//
+//7-day practice plan
+//
+//Day 1
+//
+//Solve 1–20 by hand
+//
+//Day 2
+//
+//Solve 21–40
+//
+//Day 3
+//
+//Solve 41–60
+//
+//Day 4
+//
+//Solve 61–80
+//
+//Day 5
+//
+//Solve 81–100
+//
+//Day 6
+//
+//Repeat only the ones you got wrong
+//
+//Day 7
+//
+//Do 15 random ones without looking
+//
+//⸻
+//
+//The most important 20 to memorise first
+//
+//Start with:
+//        1, 2, 5, 6, 21, 22, 24, 25, 29, 41, 43, 45, 49, 50, 54, 58, 61, 62, 82, 100
+//
+//Those are the highest-value interview patterns.
+//
+//⸻
+//
+//Best practice rule
+//
+//For every problem, say out loud:
+//        1.	input
+//	2.	output
+//	3.	simple approach
+//	4.	code
+//
+//That will help in interview.
 //}
