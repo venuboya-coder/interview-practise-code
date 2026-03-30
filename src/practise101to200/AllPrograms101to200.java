@@ -634,6 +634,298 @@
 //        }
 //        }
 
+//141–160: Business logic / pricing / retry / batching
+//
+//141. Apply percentage discount
+//double price = 200.0;
+//double discount = 10.0;
+//
+//double finalPrice = price - (price * discount / 100);
+//System.out.println(finalPrice);
+
+//142. Apply fixed discount with floor at zero
+//double price = 20.0;
+//double discount = 30.0;
+//
+//double finalPrice = Math.max(0, price - discount);
+//System.out.println(finalPrice);
+
+//143. Calculate cart total with tax
+//double subtotal = 100.0;
+//double taxPercent = 20.0;
+//
+//double total = subtotal + (subtotal * taxPercent / 100);
+//System.out.println(total);
+
+//144. Apply BOGO only to eligible product
+//String productId = "SKU-1";
+//int quantity = 3;
+//double price = 10.0;
+//boolean eligible = productId.equals("SKU-1");
+//
+//double total;
+//if (eligible) {
+//int payable = (quantity / 2) + (quantity % 2);
+//total = payable * price;
+//} else {
+//total = quantity * price;
+//}
+//
+//        System.out.println(total);
+
+//145. Apply buy 2 get 1 free
+//int quantity = 7;
+//double price = 10.0;
+//
+//int free = quantity / 3;
+//int payable = quantity - free;
+//double total = payable * price;
+//
+//System.out.println(total);
+
+//146. Cap maximum order quantity
+//int quantity = 120;
+//int maxAllowed = 100;
+//
+//if (quantity > maxAllowed) {
+//        System.out.println("Invalid quantity");
+//} else {
+//        System.out.println("Valid");
+//}
+
+//147. Batch records into chunks of size 3
+//import java.util.*;
+//
+//List<String> records = Arrays.asList("A", "B", "C", "D", "E", "F", "G");
+//int batchSize = 3;
+//
+//for (int i = 0; i < records.size(); i += batchSize) {
+//List<String> batch = records.subList(i, Math.min(i + batchSize, records.size()));
+//    System.out.println(batch);
+//}
+
+//148. Retry until success or max attempts
+//int maxAttempts = 3;
+//boolean success = false;
+//
+//for (int i = 1; i <= maxAttempts; i++) {
+//        System.out.println("Attempt " + i);
+//    if (i == 3) { // simulate success
+//success = true;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(success);
+
+//149. Exponential backoff values
+//int baseDelay = 1000;
+//for (int attempt = 1; attempt <= 5; attempt++) {
+//int delay = (int) Math.pow(2, attempt - 1) * baseDelay;
+//    System.out.println(delay);
+//}
+
+//150. Calculate failure percentage
+//int total = 50;
+//int failed = 7;
+//
+//double percentage = (failed * 100.0) / total;
+//System.out.println(percentage);
+
+//151. Identify flaky test cases (pass-fail-pass)
+//import java.util.*;
+//
+//Map<String, List<String>> history = new HashMap<>();
+//history.put("TC1", Arrays.asList("PASS", "FAIL", "PASS"));
+//        history.put("TC2", Arrays.asList("PASS", "PASS", "PASS"));
+//
+//        for (Map.Entry<String, List<String>> e : history.entrySet()) {
+//List<String> h = e.getValue();
+//    if (h.contains("FAIL") && h.contains("PASS")) {
+//        System.out.println("Potential flaky: " + e.getKey());
+//        }
+//        }
+
+//152. Find latest failed build number
+//int[] builds = {101, 102, 103, 104};
+//String[] statuses = {"PASS", "FAIL", "PASS", "FAIL"};
+//
+//for (int i = builds.length - 1; i >= 0; i--) {
+//        if (statuses[i].equals("FAIL")) {
+//        System.out.println(builds[i]);
+//        break;
+//                }
+//                }
+
+//153. Count API failures by endpoint
+//import java.util.*;
+//
+//class Log {
+//    String endpoint;
+//    int status;
+//    Log(String endpoint, int status) {
+//        this.endpoint = endpoint;
+//        this.status = status;
+//    }
+//}
+//
+//List<Log> logs = Arrays.asList(
+//        new Log("/cart", 500),
+//        new Log("/cart", 200),
+//        new Log("/login", 500)
+//);
+//
+//Map<String, Integer> failures = new HashMap<>();
+//
+//for (Log log : logs) {
+//        if (log.status >= 400) {
+//        failures.put(log.endpoint, failures.getOrDefault(log.endpoint, 0) + 1);
+//        }
+//        }
+//
+//        System.out.println(failures);
+
+//154. Keep only latest result per test case
+//import java.util.*;
+//
+//class Result {
+//    String testName;
+//    String status;
+//    int runId;
+//    Result(String testName, String status, int runId) {
+//        this.testName = testName;
+//        this.status = status;
+//        this.runId = runId;
+//    }
+//}
+//
+//List<Result> results = Arrays.asList(
+//        new Result("TC1", "FAIL", 1),
+//        new Result("TC1", "PASS", 2),
+//        new Result("TC2", "PASS", 1)
+//);
+//
+//Map<String, Result> latest = new HashMap<>();
+//
+//for (Result r : results) {
+//        if (!latest.containsKey(r.testName) || r.runId > latest.get(r.testName).runId) {
+//        latest.put(r.testName, r);
+//    }
+//            }
+//
+//            for (Result r : latest.values()) {
+//        System.out.println(r.testName + " -> " + r.status);
+//}
+
+//155. Find test cases that always failed
+//import java.util.*;
+//
+//Map<String, List<String>> history = new HashMap<>();
+//history.put("TC1", Arrays.asList("FAIL", "FAIL", "FAIL"));
+//        history.put("TC2", Arrays.asList("FAIL", "PASS", "FAIL"));
+//
+//        for (Map.Entry<String, List<String>> e : history.entrySet()) {
+//boolean alwaysFail = true;
+//    for (String s : e.getValue()) {
+//        if (!s.equals("FAIL")) {
+//alwaysFail = false;
+//        break;
+//        }
+//        }
+//        if (alwaysFail) {
+//        System.out.println(e.getKey());
+//        }
+//        }
+
+//156. Split payload IDs into success and failure groups
+//import java.util.*;
+//
+//Map<String, Integer> result = new HashMap<>();
+//result.put("id1", 200);
+//result.put("id2", 500);
+//result.put("id3", 201);
+//
+//List<String> success = new ArrayList<>();
+//List<String> failure = new ArrayList<>();
+//
+//for (Map.Entry<String, Integer> e : result.entrySet()) {
+//        if (e.getValue() >= 200 && e.getValue() < 300) success.add(e.getKey());
+//        else failure.add(e.getKey());
+//        }
+//
+//        System.out.println(success);
+//System.out.println(failure);
+
+//157. Validate no duplicate product IDs in cart
+//import java.util.*;
+//
+//String[] productIds = {"SKU1", "SKU2", "SKU3", "SKU2"};
+//Set<String> set = new HashSet<>();
+//boolean hasDuplicates = false;
+//
+//for (String id : productIds) {
+//        if (!set.add(id)) {
+//hasDuplicates = true;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(hasDuplicates);
+
+//158. Find highest revenue product
+//class Item {
+//    String name;
+//    int quantity;
+//    double price;
+//
+//    Item(String name, int quantity, double price) {
+//        this.name = name;
+//        this.quantity = quantity;
+//        this.price = price;
+//    }
+//}
+//
+//Item[] items = {
+//        new Item("Mouse", 2, 15.99),
+//        new Item("Keyboard", 1, 49.99),
+//        new Item("Headset", 3, 20.0)
+//};
+//
+//String maxName = "";
+//double maxRevenue = 0;
+//
+//for (Item item : items) {
+//double revenue = item.quantity * item.price;
+//    if (revenue > maxRevenue) {
+//maxRevenue = revenue;
+//maxName = item.name;
+//    }
+//            }
+//
+//            System.out.println(maxName);
+
+//159. Validate grand total matches sum of line totals
+//double[] lineTotals = {31.98, 49.99};
+//double grandTotal = 81.97;
+//double sum = 0.0;
+//
+//for (double line : lineTotals) sum += line;
+//
+//System.out.println(Math.abs(sum - grandTotal) < 0.001);
+
+//160. Find missing batch numbers
+//import java.util.*;
+//
+//int[] batches = {1, 2, 4, 5, 7};
+//Set<Integer> set = new HashSet<>();
+//for (int b : batches) set.add(b);
+//
+//for (int i = 1; i <= 7; i++) {
+//        if (!set.contains(i)) {
+//        System.out.println("Missing batch: " + i);
+//    }
+//            }
+
 
 
 //}
