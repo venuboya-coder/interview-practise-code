@@ -905,5 +905,308 @@
 //
 //System.out.println(values.size() == set.size());
 
+//81–100: QA interview-level practical problems
+//
+//81. Calculate cart total with quantity and price objects
+//class Item {
+//    int quantity;
+//    double price;
+//
+//    Item(int quantity, double price) {
+//        this.quantity = quantity;
+//        this.price = price;
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Item[] items = {
+//                new Item(2, 15.99),
+//                new Item(1, 49.99)
+//        };
+//
+//        double total = 0.0;
+//        for (Item item : items) {
+//            total += item.quantity * item.price;
+//        }
+//
+//        System.out.println(total);
+//    }
+//}
 
+//82. Apply Buy One Get One Free
+//int quantity = 5;
+//double price = 10.0;
+//
+//int payableQuantity = (quantity / 2) + (quantity % 2);
+//double total = payableQuantity * price;
+//
+//System.out.println(total);
+
+//83. Retry operation with backoff-like delay
+//int retries = 3;
+//
+//for (int i = 1; i <= retries; i++) {
+//        System.out.println("Attempt " + i);
+//    try {
+//            Thread.sleep(i * 1000);
+//    } catch (InterruptedException e) {
+//        e.printStackTrace();
+//    }
+//            }
+
+//84. Validate API response has expected key-value pairs
+//import java.util.*;
+//
+//Map<String, String> expected = Map.of("status", "success", "code", "200");
+//Map<String, String> actual = new HashMap<>();
+//actual.put("status", "success");
+//actual.put("code", "200");
+//
+//boolean allMatch = true;
+//for (String key : expected.keySet()) {
+//        if (!expected.get(key).equals(actual.get(key))) {
+//allMatch = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(allMatch);
+
+//85. Filter high response times and compute average
+//int[] times = {100, 200, 500, 700, 150};
+//int threshold = 300;
+//        int sum = 0, count = 0;
+//
+//for (int t : times) {
+//        if (t > threshold) {
+//sum += t;
+//count++;
+//        }
+//        }
+//
+//        System.out.println(count == 0 ? 0 : (sum / count));
+
+//86. Find cart item with highest price
+//class Item {
+//    String name;
+//    double price;
+//
+//    Item(String name, double price) {
+//        this.name = name;
+//        this.price = price;
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Item[] items = {
+//                new Item("Mouse", 15.99),
+//                new Item("Keyboard", 49.99),
+//                new Item("Headset", 29.99)
+//        };
+//
+//        Item max = items[0];
+//        for (Item item : items) {
+//            if (item.price > max.price) {
+//                max = item;
+//            }
+//        }
+//
+//        System.out.println(max.name);
+//    }
+//}
+
+//87. Validate all mandatory fields in a cart item
+//class Item {
+//    String productId;
+//    String productName;
+//    int quantity;
+//    double price;
+//
+//    Item(String productId, String productName, int quantity, double price) {
+//        this.productId = productId;
+//        this.productName = productName;
+//        this.quantity = quantity;
+//        this.price = price;
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Item item = new Item("SKU-1", "Mouse", 2, 15.99);
+//
+//        boolean valid = item.productId != null &&
+//                item.productName != null &&
+//                item.quantity > 0 &&
+//                item.price > 0;
+//
+//        System.out.println(valid);
+//    }
+//}
+
+//88. Find duplicate API payload IDs
+//import java.util.*;
+//
+//String[] ids = {"101", "102", "101", "103"};
+//Set<String> seen = new HashSet<>();
+//Set<String> duplicates = new HashSet<>();
+//
+//for (String id : ids) {
+//        if (!seen.add(id)) {
+//        duplicates.add(id);
+//    }
+//            }
+//
+//            System.out.println(duplicates);
+
+//89. Count occurrences of HTTP methods
+//import java.util.*;
+//
+//String[] methods = {"GET", "POST", "GET", "DELETE", "POST", "GET"};
+//Map<String, Integer> map = new HashMap<>();
+//
+//for (String method : methods) {
+//        map.put(method, map.getOrDefault(method, 0) + 1);
+//        }
+//
+//        System.out.println(map);
+
+//90. Validate expected products exist in cart
+//import java.util.*;
+//
+//List<String> expected = Arrays.asList("Mouse", "Keyboard");
+//List<String> actual = Arrays.asList("Mouse", "Keyboard", "Headset");
+//
+//boolean allPresent = actual.containsAll(expected);
+//System.out.println(allPresent);
+
+//91. Remove failed status codes and keep success only
+//import java.util.*;
+//
+//List<Integer> codes = Arrays.asList(200, 500, 201, 404, 204);
+//List<Integer> success = new ArrayList<>();
+//
+//for (int code : codes) {
+//        if (code >= 200 && code < 300) {
+//        success.add(code);
+//    }
+//            }
+//
+//            System.out.println(success);
+
+//92. Check if JSON-like string contains required key
+//String json = "{\"id\":101,\"name\":\"John\"}";
+//String key = "\"id\"";
+//
+//System.out.println(json.contains(key));
+
+//93. Group test results by status
+//import java.util.*;
+//
+//String[] results = {"PASS", "FAIL", "PASS", "SKIP", "FAIL"};
+//Map<String, Integer> map = new HashMap<>();
+//
+//for (String result : results) {
+//        map.put(result, map.getOrDefault(result, 0) + 1);
+//        }
+//
+//        System.out.println(map);
+
+//94. Find highest failing response time
+//int[] times = {120, 500, 300, 800, 450};
+//int max = 0;
+//
+//for (int time : times) {
+//        if (time > max) {
+//max = time;
+//    }
+//            }
+//
+//            System.out.println(max);
+
+//95. Validate all item currencies are same
+//String[] currencies = {"GBP", "GBP", "GBP"};
+//boolean same = true;
+//
+//for (int i = 1; i < currencies.length; i++) {
+//        if (!currencies[i].equals(currencies[0])) {
+//same = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(same);
+
+//96. Find total number of test cases by module
+//        import java.util.*;
+//
+//String[] modules = {"API", "UI", "API", "DB", "UI"};
+//Map<String, Integer> map = new HashMap<>();
+//
+//for (String module : modules) {
+//        map.put(module, map.getOrDefault(module, 0) + 1);
+//        }
+//
+//        System.out.println(map);
+
+//97. Compare expected and actual cart totals
+//double expected = 81.97;
+//double actual = 81.97;
+//
+//System.out.println(Math.abs(expected - actual) < 0.001);
+
+//98. Check if any item has invalid quantity or price
+//class Item {
+//    int quantity;
+//    double price;
+//
+//    Item(int quantity, double price) {
+//        this.quantity = quantity;
+//        this.price = price;
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Item[] items = {new Item(2, 10), new Item(0, 20)};
+//        boolean invalid = false;
+//
+//        for (Item item : items) {
+//            if (item.quantity <= 0 || item.price <= 0) {
+//                invalid = true;
+//                break;
+//            }
+//        }
+//
+//        System.out.println(invalid);
+//    }
+//}
+
+//99. Build a simple assertion method
+//public class Main {
+//    public static void assertEquals(String expected, String actual) {
+//        if (!expected.equals(actual)) {
+//            throw new RuntimeException("Assertion failed");
+//        }
+//        System.out.println("Assertion passed");
+//    }
+//
+//    public static void main(String[] args) {
+//        assertEquals("PASS", "PASS");
+//    }
+//}
+
+//100. Validate cart total after BOGO + normal item
+//double mousePrice = 15.99;
+//int mouseQty = 2;
+//
+//double keyboardPrice = 49.99;
+//int keyboardQty = 1;
+//
+//int payableMouseQty = (mouseQty / 2) + (mouseQty % 2);
+//
+//double total = (payableMouseQty * mousePrice) + (keyboardQty * keyboardPrice);
+//
+//System.out.println(String.format("%.2f", total)); // 65.98
 //}
