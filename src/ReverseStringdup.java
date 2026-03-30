@@ -1,4 +1,4 @@
-public class ReverseString {
+public class ReverseStringdup {
     static void main() {
         String str = "welcome to Java world";
         System.out.println(str);
