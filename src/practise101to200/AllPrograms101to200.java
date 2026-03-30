@@ -1213,4 +1213,425 @@
 //    }
 //}
 
+//181–200: Stronger interview-level QA scenarios
+//
+//181. Calculate cart total with mixed offer types
+//enum OfferType { NONE, BOGO }
+//
+//class Item {
+//    int quantity;
+//    double price;
+//    OfferType offerType;
+//
+//    Item(int quantity, double price, OfferType offerType) {
+//        this.quantity = quantity;
+//        this.price = price;
+//        this.offerType = offerType;
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Item[] items = {
+//                new Item(2, 15.99, OfferType.BOGO),
+//                new Item(1, 49.99, OfferType.NONE)
+//        };
+//
+//        double total = 0.0;
+//
+//        for (Item item : items) {
+//            if (item.offerType == OfferType.BOGO) {
+//                int payable = (item.quantity / 2) + (item.quantity % 2);
+//                total += payable * item.price;
+//            } else {
+//                total += item.quantity * item.price;
+//            }
+//        }
+//
+//        System.out.println(String.format("%.2f", total));
+//    }
+//}
+
+//182. Find API contracts missing in actual deployment
+//import java.util.*;
+//
+//List<String> expected = Arrays.asList("getCart", "createCart", "deleteCart");
+//List<String> actual = Arrays.asList("getCart", "createCart");
+//
+//for (String contract : expected) {
+//        if (!actual.contains(contract)) {
+//        System.out.println(contract);
+//    }
+//            }
+
+//183. Compare two result sets and print unexpected rows
+//import java.util.*;
+//
+//List<String> expected = Arrays.asList("row1", "row2");
+//List<String> actual = Arrays.asList("row1", "row2", "row3");
+//
+//for (String row : actual) {
+//        if (!expected.contains(row)) {
+//        System.out.println("Unexpected: " + row);
+//    }
+//            }
+
+//184. Validate retries stop after success
+//int maxAttempts = 5;
+//boolean success = false;
+//int attemptsUsed = 0;
+//
+//for (int i = 1; i <= maxAttempts; i++) {
+//attemptsUsed++;
+//        if (i == 3) { // simulate success on 3rd
+//success = true;
+//        break;
+//        }
+//        }
+//
+//        System.out.println("Success=" + success + ", attempts=" + attemptsUsed);
+
+//185. Find common failed tests across two runs
+//import java.util.*;
+//
+//Set<String> run1 = new HashSet<>(Arrays.asList("TC1", "TC2", "TC3"));
+//Set<String> run2 = new HashSet<>(Arrays.asList("TC2", "TC3", "TC4"));
+//
+//run1.retainAll(run2);
+//System.out.println(run1);
+
+//186. Find newly failing tests in latest run
+//import java.util.*;
+//
+//Set<String> oldFails = new HashSet<>(Arrays.asList("TC1", "TC2"));
+//Set<String> newFails = new HashSet<>(Arrays.asList("TC2", "TC3"));
+//
+//for (String tc : newFails) {
+//        if (!oldFails.contains(tc)) {
+//        System.out.println(tc);
+//    }
+//            }
+
+//187. Find recovered tests (failed before, passed now)
+//import java.util.*;
+//
+//Set<String> oldFails = new HashSet<>(Arrays.asList("TC1", "TC2", "TC3"));
+//Set<String> newFails = new HashSet<>(Arrays.asList("TC2"));
+//
+//for (String tc : oldFails) {
+//        if (!newFails.contains(tc)) {
+//        System.out.println(tc);
+//    }
+//            }
+
+//188. Validate all line totals equal quantity * price
+//class LineItem {
+//    int quantity;
+//    double price;
+//    double lineTotal;
+//
+//    LineItem(int quantity, double price, double lineTotal) {
+//        this.quantity = quantity;
+//        this.price = price;
+//        this.lineTotal = lineTotal;
+//    }
+//}
+//
+//LineItem[] items = {
+//        new LineItem(2, 10.0, 20.0),
+//        new LineItem(3, 5.0, 15.0)
+//};
+//
+//boolean valid = true;
+//for (LineItem item : items) {
+//        if (Math.abs((item.quantity * item.price) - item.lineTotal) > 0.001) {
+//valid = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(valid);
+
+//189. Find invalid response schema fields
+//import java.util.*;
+//
+//Set<String> expectedFields = Set.of("id", "name", "status");
+//Set<String> actualFields = Set.of("id", "name", "state");
+//
+//for (String field : expectedFields) {
+//        if (!actualFields.contains(field)) {
+//        System.out.println("Missing field: " + field);
+//    }
+//            }
+//            for (String field : actualFields) {
+//        if (!expectedFields.contains(field)) {
+//        System.out.println("Unexpected field: " + field);
+//    }
+//            }
+
+//190. Validate no duplicate cart IDs in a list of carts
+//import java.util.*;
+//
+//String[] cartIds = {"C1", "C2", "C3", "C2"};
+//Set<String> seen = new HashSet<>();
+//boolean duplicateFound = false;
+//
+//for (String id : cartIds) {
+//        if (!seen.add(id)) {
+//duplicateFound = true;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(duplicateFound);
+
+//191. Build endpoint pass rate summary
+//import java.util.*;
+//
+//class Result {
+//    String endpoint;
+//    boolean pass;
+//    Result(String endpoint, boolean pass) {
+//        this.endpoint = endpoint;
+//        this.pass = pass;
+//    }
+//}
+//
+//List<Result> results = Arrays.asList(
+//        new Result("/cart", true),
+//        new Result("/cart", false),
+//        new Result("/login", true)
+//);
+//
+//Map<String, Integer> total = new HashMap<>();
+//Map<String, Integer> passed = new HashMap<>();
+//
+//for (Result r : results) {
+//        total.put(r.endpoint, total.getOrDefault(r.endpoint, 0) + 1);
+//        if (r.pass) {
+//        passed.put(r.endpoint, passed.getOrDefault(r.endpoint, 0) + 1);
+//        }
+//        }
+//
+//        for (String ep : total.keySet()) {
+//double rate = (passed.getOrDefault(ep, 0) * 100.0) / total.get(ep);
+//    System.out.println(ep + " = " + rate + "%");
+//}
+
+//192. Find endpoints with failure rate above threshold
+//import java.util.*;
+//
+//Map<String, Integer> total = Map.of("/cart", 10, "/login", 20);
+//Map<String, Integer> failures = Map.of("/cart", 3, "/login", 1);
+//
+//for (String ep : total.keySet()) {
+//double failureRate = (failures.getOrDefault(ep, 0) * 100.0) / total.get(ep);
+//    if (failureRate > 20) {
+//        System.out.println(ep);
+//    }
+//            }
+
+//193. Validate test data rows have unique composite key
+//import java.util.*;
+//
+//class Row {
+//    String userId;
+//    String productId;
+//
+//    Row(String userId, String productId) {
+//        this.userId = userId;
+//        this.productId = productId;
+//    }
+//}
+//
+//Row[] rows = {
+//        new Row("U1", "P1"),
+//        new Row("U1", "P2"),
+//        new Row("U1", "P1")
+//};
+//
+//Set<String> keys = new HashSet<>();
+//for (Row row : rows) {
+//String key = row.userId + "-" + row.productId;
+//    if (!keys.add(key)) {
+//        System.out.println("Duplicate composite key: " + key);
+//    }
+//            }
+
+//194. Compare API versions and find removed endpoints
+//import java.util.*;
+//
+//Set<String> oldVersion = Set.of("getCart", "createCart", "deleteCart");
+//Set<String> newVersion = Set.of("getCart", "createCart");
+//
+//for (String ep : oldVersion) {
+//        if (!newVersion.contains(ep)) {
+//        System.out.println("Removed: " + ep);
+//    }
+//            }
+
+//195. Validate all currencies belong to allowed list
+//import java.util.*;
+//
+//String[] currencies = {"GBP", "USD", "INR"};
+//Set<String> allowed = Set.of("GBP", "USD", "EUR");
+//
+//for (String c : currencies) {
+//        if (!allowed.contains(c)) {
+//        System.out.println("Invalid currency: " + c);
+//    }
+//            }
+
+//196. Calculate p95 approximately from sorted response times
+//import java.util.*;
+//
+//int[] times = {100, 120, 130, 150, 180, 200, 220, 250, 300, 500};
+//Arrays.sort(times);
+//
+//int index = (int) Math.ceil(0.95 * times.length) - 1;
+//System.out.println(times[index]);
+
+//197. Validate request IDs are sequential
+//int[] ids = {101, 102, 103, 104};
+//boolean sequential = true;
+//
+//for (int i = 0; i < ids.length - 1; i++) {
+//        if (ids[i + 1] != ids[i] + 1) {
+//sequential = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(sequential);
+
+//198. Find gaps in sequential order IDs
+//int[] ids = {101, 102, 104, 107};
+//
+//for (int i = 0; i < ids.length - 1; i++) {
+//        for (int expected = ids[i] + 1; expected < ids[i + 1]; expected++) {
+//        System.out.println("Missing: " + expected);
+//    }
+//            }
+
+//199. Build simple soft assertion collector
+//import java.util.*;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        List<String> errors = new ArrayList<>();
+//
+//        if (!"PASS".equals("FAIL")) {
+//            errors.add("Status mismatch");
+//        }
+//
+//        if (100 != 101) {
+//            errors.add("Code mismatch");
+//        }
+//
+//        if (errors.isEmpty()) {
+//            System.out.println("All assertions passed");
+//        } else {
+//            System.out.println(errors);
+//        }
+//    }
+//}
+
+//200. Validate cart update preserves cartId and recalculates total
+//class Item {
+//    int quantity;
+//    double price;
+//
+//    Item(int quantity, double price) {
+//        this.quantity = quantity;
+//        this.price = price;
+//    }
+//}
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        String existingCartId = "CART-123";
+//        Item[] newItems = {
+//                new Item(2, 20.0),
+//                new Item(1, 15.0)
+//        };
+//
+//        double total = 0.0;
+//        for (Item item : newItems) {
+//            total += item.quantity * item.price;
+//        }
+//
+//        System.out.println("CartId=" + existingCartId);
+//        System.out.println("Total=" + total);
+//    }
+//}
+//*******************************************************************************************
+//*******************************************************************************************
+//*******************************IMPORTANT INSTRUCTIONS************************************************************
+//*******************************************************************************************
+//*******************************************************************************************
+//How to practice these 100 harder questions
+//
+//Best 7-day plan
+//
+//Day 1
+//
+//        101–120
+//
+//Day 2
+//
+//        121–140
+//
+//Day 3
+//
+//        141–160
+//
+//Day 4
+//
+//        161–180
+//
+//Day 5
+//
+//        181–200
+//
+//Day 6
+//
+//Repeat the ones you could not solve alone
+//
+//Day 7
+//
+//Randomly pick 20 and solve without looking
+//
+//⸻
+//
+//The 15 most valuable from this set
+//
+//Start with these first:
+//        •	105
+//        •	108
+//        •	123
+//        •	126
+//        •	128
+//        •	129
+//        •	141
+//        •	144
+//        •	145
+//        •	147
+//        •	151
+//        •	154
+//        •	158
+//        •	181
+//        •	199
+//
+//These are very close to what QA/SDET interviews actually test.
+//
+//        ⸻
+//
+//Most important interview rule while solving
+//
+//Always say this first:
+//
+//        “I’ll start with a simple working solution, then improve if needed.”
+//
+//That alone reduces pressure and makes you sound strong.
+
 //}
