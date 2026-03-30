@@ -431,5 +431,235 @@
 //
 //        System.out.println(result.toString().trim());
 
+//41–60: QA-specific coding problems
+//
+//41. Count passed and failed API status codes
+//int[] statusCodes = {200, 200, 500, 404, 201};
+//        int pass = 0, fail = 0;
+//
+//for (int code : statusCodes) {
+//        if (code >= 200 && code < 300) {
+//pass++;
+//        } else {
+//fail++;
+//        }
+//        }
+//
+//        System.out.println("Pass: " + pass + ", Fail: " + fail);
+
+//42. Print only failed status codes
+//int[] statusCodes = {200, 500, 404, 201, 400};
+//
+//for (int code : statusCodes) {
+//        if (code != 200) {
+//        System.out.println(code);
+//    }
+//            }
+
+//43. Validate response time threshold
+//int[] responseTimes = {120, 200, 550, 80};
+//int threshold = 300;
+//
+//for (int time : responseTimes) {
+//        if (time > threshold) {
+//        System.out.println("Slow response: " + time);
+//    }
+//            }
+
+//44. Count null or blank strings in list
+//import java.util.*;
+//
+//List<String> values = Arrays.asList("abc", "", null, "test", " ");
+//int count = 0;
+//
+//for (String val : values) {
+//        if (val == null || val.trim().isEmpty()) {
+//count++;
+//        }
+//        }
+//
+//        System.out.println(count);
+
+//45. Validate required API fields are present
+//import java.util.*;
+//
+//Map<String, String> response = new HashMap<>();
+//response.put("id", "101");
+//response.put("name", "John");
+//
+//String[] required = {"id", "name", "status"};
+//
+//for (String field : required) {
+//        if (!response.containsKey(field)) {
+//        System.out.println("Missing field: " + field);
+//    }
+//            }
+
+//46. Compare expected and actual strings
+//String expected = "success";
+//String actual = "success";
+//
+//System.out.println(expected.equals(actual));
+
+//47. Compare two lists and print missing elements
+//import java.util.*;
+//
+//List<String> expected = Arrays.asList("A", "B", "C");
+//List<String> actual = Arrays.asList("A", "C");
+//
+//for (String item : expected) {
+//        if (!actual.contains(item)) {
+//        System.out.println("Missing: " + item);
+//    }
+//            }
+
+//48. Validate all prices are positive
+//double[] prices = {10.5, 20.0, -5.0};
+//
+//for (double price : prices) {
+//        if (price <= 0) {
+//        System.out.println("Invalid price: " + price);
+//    }
+//            }
+
+//49. Find duplicate user IDs in test data
+//import java.util.*;
+//
+//String[] userIds = {"u1", "u2", "u3", "u2", "u1"};
+//Set<String> seen = new HashSet<>();
+//Set<String> duplicates = new HashSet<>();
+//
+//for (String id : userIds) {
+//        if (!seen.add(id)) {
+//        duplicates.add(id);
+//    }
+//            }
+//
+//            System.out.println(duplicates);
+
+//50. Calculate cart total
+//double[] prices = {15.99, 49.99};
+//int[] quantities = {2, 1};
+//double total = 0.0;
+//
+//for (int i = 0; i < prices.length; i++) {
+//total += prices[i] * quantities[i];
+//        }
+//
+//        System.out.println(total);
+
+//51. Validate all emails contain @
+//        String[] emails = {"a@test.com", "wrongemail", "b@test.com"};
+//
+//        for (String email : emails) {
+//        if (!email.contains("@")) {
+//        System.out.println("Invalid email: " + email);
+//    }
+//            }
+
+//52. Count failed test cases
+//String[] results = {"PASS", "FAIL", "PASS", "FAIL"};
+//int failCount = 0;
+//
+//for (String result : results) {
+//        if (result.equals("FAIL")) {
+//failCount++;
+//        }
+//        }
+//
+//        System.out.println(failCount);
+
+//53. Find maximum response time from API run
+//int[] times = {100, 250, 600, 310};
+//int max = times[0];
+//
+//for (int t : times) {
+//        if (t > max) {
+//max = t;
+//    }
+//            }
+//
+//            System.out.println(max);
+
+//54. Validate sorted list
+//int[] arr = {1, 2, 3, 4};
+//boolean sorted = true;
+//
+//for (int i = 0; i < arr.length - 1; i++) {
+//        if (arr[i] > arr[i + 1]) {
+//sorted = false;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(sorted);
+
+//55. Check if any test result is FAIL
+//String[] results = {"PASS", "PASS", "FAIL"};
+//boolean hasFail = false;
+//
+//for (String result : results) {
+//        if (result.equals("FAIL")) {
+//hasFail = true;
+//        break;
+//        }
+//        }
+//
+//        System.out.println(hasFail);
+
+//56. Extract numbers from mixed string
+//String input = "Order123Amount500";
+//String numbers = input.replaceAll("\\D", "");
+//
+//System.out.println(numbers);
+
+//57. Sum all numeric strings from list
+//import java.util.*;
+//
+//List<String> values = Arrays.asList("10", "20", "30");
+//int sum = 0;
+//
+//for (String val : values) {
+//sum += Integer.parseInt(val);
+//}
+//
+//        System.out.println(sum);
+
+//58. Retry simple operation 3 times
+//int maxRetries = 3;
+//
+//for (int i = 1; i <= maxRetries; i++) {
+//        System.out.println("Attempt: " + i);
+//}
+
+//59. Find mismatched fields in two maps
+//import java.util.*;
+//
+//Map<String, String> expected = new HashMap<>();
+//expected.put("name", "John");
+//expected.put("status", "active");
+//
+//Map<String, String> actual = new HashMap<>();
+//actual.put("name", "John");
+//actual.put("status", "inactive");
+//
+//for (String key : expected.keySet()) {
+//        if (!expected.get(key).equals(actual.get(key))) {
+//        System.out.println("Mismatch in " + key);
+//    }
+//            }
+
+//60. Count how many status codes are 5xx
+//int[] statusCodes = {200, 500, 503, 404, 502};
+//int count = 0;
+//
+//for (int code : statusCodes) {
+//        if (code >= 500 && code < 600) {
+//count++;
+//        }
+//        }
+//
+//        System.out.println(count);
+
 
 //}
