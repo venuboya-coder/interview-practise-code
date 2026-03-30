@@ -926,6 +926,291 @@
 //    }
 //            }
 
+//161–180: Framework-style utilities and validation helpers
+//
+//161. Write a utility to check if string is blank
+//public class Main {
+//    public static boolean isBlank(String value) {
+//        return value == null || value.trim().isEmpty();
+//    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(isBlank(" "));
+//    }
+//}
 
+//162. Write utility to safely parse integer
+//public class Main {
+//    public static Integer safeParse(String value) {
+//        try {
+//            return Integer.parseInt(value);
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(safeParse("123"));
+//        System.out.println(safeParse("abc"));
+//    }
+//}
+
+//163. Utility to compare doubles with tolerance
+//public class Main {
+//    public static boolean nearlyEqual(double a, double b, double tolerance) {
+//        return Math.abs(a - b) <= tolerance;
+//    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(nearlyEqual(81.97, 81.9701, 0.01));
+//    }
+//}
+
+//164. Utility to check if list contains duplicates
+//import java.util.*;
+//
+//public class Main {
+//    public static <T> boolean hasDuplicates(List<T> list) {
+//        return list.size() != new HashSet<>(list).size();
+//    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(hasDuplicates(Arrays.asList(1, 2, 2, 3)));
+//    }
+//}
+
+//165. Utility to return failed test names only
+//import java.util.*;
+//
+//class TestResult {
+//    String testName;
+//    String status;
+//    TestResult(String testName, String status) {
+//        this.testName = testName;
+//        this.status = status;
+//    }
+//}
+//
+//public class Main {
+//    public static List<String> getFailedTests(List<TestResult> results) {
+//        List<String> failed = new ArrayList<>();
+//        for (TestResult r : results) {
+//            if ("FAIL".equals(r.status)) {
+//                failed.add(r.testName);
+//            }
+//        }
+//        return failed;
+//    }
+//}
+
+//166. Utility to count status groups
+//import java.util.*;
+//
+//public class Main {
+//    public static Map<String, Integer> countStatuses(List<String> statuses) {
+//        Map<String, Integer> map = new HashMap<>();
+//        for (String status : statuses) {
+//            map.put(status, map.getOrDefault(status, 0) + 1);
+//        }
+//        return map;
+//    }
+//}
+
+//167. Utility to validate all values in map are non-null
+//import java.util.*;
+//
+//public class Main {
+//    public static boolean allValuesPresent(Map<String, String> map) {
+//        for (String value : map.values()) {
+//            if (value == null) return false;
+//        }
+//        return true;
+//    }
+//}
+
+//168. Utility to return missing keys between expected and actual maps
+//import java.util.*;
+//
+//public class Main {
+//    public static List<String> missingKeys(Set<String> expected, Map<String, String> actual) {
+//        List<String> result = new ArrayList<>();
+//        for (String key : expected) {
+//            if (!actual.containsKey(key)) {
+//                result.add(key);
+//            }
+//        }
+//        return result;
+//    }
+//}
+
+//169. Utility to group strings by first letter
+//import java.util.*;
+//
+//public class Main {
+//    public static Map<Character, List<String>> groupByFirstLetter(List<String> words) {
+//        Map<Character, List<String>> map = new HashMap<>();
+//        for (String word : words) {
+//            char first = word.charAt(0);
+//            map.computeIfAbsent(first, k -> new ArrayList<>()).add(word);
+//        }
+//        return map;
+//    }
+//}
+
+//170. Utility to flatten nested lists
+//import java.util.*;
+//
+//public class Main {
+//    public static List<Integer> flatten(List<List<Integer>> nested) {
+//        List<Integer> result = new ArrayList<>();
+//        for (List<Integer> list : nested) {
+//            result.addAll(list);
+//        }
+//        return result;
+//    }
+//}
+
+//171. Utility to chunk list into batches
+//import java.util.*;
+//
+//public class Main {
+//    public static <T> List<List<T>> chunk(List<T> input, int size) {
+//        List<List<T>> result = new ArrayList<>();
+//        for (int i = 0; i < input.size(); i += size) {
+//            result.add(input.subList(i, Math.min(i + size, input.size())));
+//        }
+//        return result;
+//    }
+//}
+
+//172. Utility to return latest item by timestamp string
+//import java.util.*;
+//
+//class Event {
+//    String name;
+//    String timestamp;
+//    Event(String name, String timestamp) {
+//        this.name = name;
+//        this.timestamp = timestamp;
+//    }
+//}
+//
+//public class Main {
+//    public static Event latest(List<Event> events) {
+//        Event latest = events.get(0);
+//        for (Event e : events) {
+//            if (e.timestamp.compareTo(latest.timestamp) > 0) {
+//                latest = e;
+//            }
+//        }
+//        return latest;
+//    }
+//}
+
+//173. Utility to remove nulls from list
+//import java.util.*;
+//
+//public class Main {
+//    public static List<String> removeNulls(List<String> input) {
+//        List<String> result = new ArrayList<>();
+//        for (String s : input) {
+//            if (s != null) result.add(s);
+//        }
+//        return result;
+//    }
+//}
+
+//174. Utility to normalize strings to lower-case trimmed list
+//import java.util.*;
+//
+//public class Main {
+//    public static List<String> normalize(List<String> input) {
+//        List<String> result = new ArrayList<>();
+//        for (String s : input) {
+//            result.add(s.trim().toLowerCase());
+//        }
+//        return result;
+//    }
+//}
+
+//175. Utility to build mismatch count between two lists
+//import java.util.*;
+//
+//public class Main {
+//    public static int mismatchCount(List<String> a, List<String> b) {
+//        int count = 0;
+//        for (int i = 0; i < Math.min(a.size(), b.size()); i++) {
+//            if (!a.get(i).equals(b.get(i))) count++;
+//        }
+//        return count;
+//    }
+//}
+
+//176. Utility to find first failing assertion name
+//import java.util.*;
+//
+//class AssertionResult {
+//    String name;
+//    boolean pass;
+//    AssertionResult(String name, boolean pass) {
+//        this.name = name;
+//        this.pass = pass;
+//    }
+//}
+//
+//public class Main {
+//    public static String firstFailure(List<AssertionResult> results) {
+//        for (AssertionResult r : results) {
+//            if (!r.pass) return r.name;
+//        }
+//        return null;
+//    }
+//}
+
+
+//177. Utility to merge two maps with second overriding first
+//import java.util.*;
+//
+//public class Main {
+//    public static Map<String, String> merge(Map<String, String> first, Map<String, String> second) {
+//        Map<String, String> merged = new HashMap<>(first);
+//        merged.putAll(second);
+//        return merged;
+//    }
+//}
+
+//178. Utility to calculate median response time
+//import java.util.*;
+//
+//public class Main {
+//    public static double median(int[] arr) {
+//        Arrays.sort(arr);
+//        int n = arr.length;
+//        if (n % 2 == 0) {
+//            return (arr[n / 2 - 1] + arr[n / 2]) / 2.0;
+//        }
+//        return arr[n / 2];
+//    }
+//}
+
+//179. Utility to find top N slowest times
+//import java.util.*;
+//
+//public class Main {
+//    public static List<Integer> topNSlowest(List<Integer> times, int n) {
+//        times.sort(Collections.reverseOrder());
+//        return times.subList(0, Math.min(n, times.size()));
+//    }
+//}
+
+//180. Utility to check whether all expected substrings are present
+//public class Main {
+//    public static boolean containsAll(String value, String[] required) {
+//        for (String r : required) {
+//            if (!value.contains(r)) return false;
+//        }
+//        return true;
+//    }
+//}
 
 //}
